@@ -9,7 +9,7 @@ function AutosController() {
   // Filter / Search
   var autosElem = document.getElementById('autos-list')
   var autosFormElem = document.getElementById('add-auto-form')
-  var showButton = document.getElementById('show-button')
+  var showButton = document.getElementById('show-autos-button')
   function drawAutos() {
     // WHERE ARE ALL THE AUTOS?
     var autos = autosService.getAutos()
