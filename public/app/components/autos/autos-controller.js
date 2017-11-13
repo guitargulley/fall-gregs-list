@@ -48,10 +48,14 @@ function AutosController() {
     var form = event.target
     autosService.addAuto(form, getAutos)
     autosFormElem.classList.toggle('hidden', true)
+    document.getElementById('addAutoForm').reset()
+    this.showAddAutoForm()
   }
+
   this.removeAuto = function removeAuto(index){
     autosService.removeAuto(index, getAutos)
   }
+
   this.showVehicles = function showVehicles(){
     document.getElementById('auto-section').classList.remove('hidden')
     document.getElementById('categories').classList.add('hidden')
