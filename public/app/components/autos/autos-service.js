@@ -1,6 +1,6 @@
 function AutosService() {
 
-    var baseUrl = 'http://localhost:3000/api/autos'
+    var baseUrl = 'http://localhost:3001/api/autos'
     // WHATS PRIVATE?
     // DUMMY DATA
     var autos =[]
@@ -30,15 +30,16 @@ function AutosService() {
         this.id = id++
     }
 
-    // PUBLIC?
     function logError(err){
         console.log(err)
     }
+    // PUBLIC?
     this.getAutos = function getAutos(cb){
         if(!cb || typeof cb != 'function'){console.error('you need a callback')}
         $.get(baseUrl)
             .then(res =>{
                 autos = res
+                console.log(autos)
                 cb(autos)
             })
             .fail(logError)

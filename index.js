@@ -1,11 +1,11 @@
 var express = require('express')
-var server = express()
 var bp = require('body-parser')
-var port = 3000
+var server = express()
+var port = 3001
 
 // middleware
 server.use(express.static(__dirname + '/public'))
-server.use(bp.json)
+server.use(bp.json())
 server.use(bp.urlencoded({ extended: true }))
 
 var autos = [{
@@ -43,3 +43,4 @@ server.delete('/api/autos/:index', (req, res, next) => {
 server.listen(port, () => {
     console.log('server is running on port', port)
 })
+console.log(autos)

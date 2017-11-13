@@ -49,21 +49,21 @@ function AutosController() {
     autosService.addAuto(form, getAutos)
     autosFormElem.classList.toggle('hidden', true)
   }
-  this.removeAutos = function removeAutos(index){
-    autosService.removeAutos(index, getAutos)
+  this.removeAuto = function removeAuto(index){
+    autosService.removeAuto(index, getAutos)
   }
-  var formstate = false
   this.showVehicles = function showVehicles(){
     document.getElementById('auto-section').classList.remove('hidden')
     document.getElementById('categories').classList.add('hidden')
-       
+    
     
   }
   this.hideVehicles = function hideVehicles(){
     document.getElementById('auto-section').classList.add('hidden')
     document.getElementById('categories').classList.remove('hidden')
-  
+    
   }
+  var formstate = false
   this.showAddAutoForm = function showAddAutoForm() {
     if (formstate) {
       showButton.innerText = 'Add Listing'
