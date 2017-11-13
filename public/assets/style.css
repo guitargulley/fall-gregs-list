@@ -1,0 +1,15 @@
+body{
+    background-color: rgb(136, 121, 121);
+}
+.header{
+    padding-top: 1em;
+    color:black;
+    text-shadow: 2px 2px 10px rgb(99, 11, 11);
+}
+.categories{
+    padding-top: 1em;
+}
+.categories button{
+    width: 200px;
+    height: 50px;
+}

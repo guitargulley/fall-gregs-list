@@ -11,7 +11,7 @@ function PropertiesController() {
     var propertiesFormElem = document.getElementById('add-property-form')
     var showButton = document.getElementById('show-properties-button')
     function drawProperties() {
-        debugger
+        
       // WHERE ARE ALL THE AUTOS?
       var properties = propertiesService.getProperties()
       var template = ''
@@ -37,7 +37,17 @@ function PropertiesController() {
       }
       propertiesElem.innerHTML = template
     }
-  
+    this.showProperties = function showProperties(){
+      document.getElementById('properties-section').classList.remove('hidden')
+      document.getElementById('categories').classList.add('hidden')
+      
+      
+    }
+    this.hideProperties = function hideProperties(){
+      document.getElementById('properties-section').classList.add('hidden')
+      document.getElementById('categories').classList.remove('hidden')
+     
+    }
     this.addProperty = function addProperty(event) {
       event.preventDefault()
       var form = event.target

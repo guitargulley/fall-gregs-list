@@ -11,7 +11,7 @@ function AnimalsController() {
     var animalsFormElem = document.getElementById('add-animal-form')
     var showButton = document.getElementById('show-animals-button')
     function drawAnimals() {
-        debugger
+        
       // WHERE ARE ALL THE AUTOS?
       var animals = animalsService.getAnimals()
       var template = ''
@@ -37,7 +37,17 @@ function AnimalsController() {
       }
       animalsElem.innerHTML = template
     }
-  
+    this.showAnimals = function showAnimals(){
+      document.getElementById('animals-section').classList.remove('hidden')
+      document.getElementById('categories').classList.add('hidden')
+      
+      
+    }
+    this.hideAnimals = function hideAnimals(){
+      document.getElementById('animals-section').classList.add('hidden')
+      document.getElementById('categories').classList.remove('hidden')
+     
+    }
     this.addAnimal = function addAnimal(event) {
       event.preventDefault()
       var form = event.target
