@@ -1,19 +1,9 @@
 function AnimalsService() {
     
+        var baseUrl = 'http://localhost:3001/api/animals'
         // WHATS PRIVATE?
         // DUMMY DATA
-        var animals = [{
-            id: 'asdfkljsdafdsaflklkijsenn',
-            type: 'Dog',
-            breed: 'Golden Retriever',
-            age: '3 months',
-            price: 1000,
-            description: 'Sweetest Dog you will ever meet!',
-            location: 'Boise',
-            contact: 'testcar@cars.auto',
-            img: '//loremflickr.com/200/200/dog',
-            title: 'Cute Golden Retriever'
-        }]
+        var animals = []
     
         
         var id = 0;
@@ -30,10 +20,19 @@ function AnimalsService() {
             this.id = id++
         }
     
+        function logError(err){
+            console.log(err)
+        }
         // PUBLIC?
     
-        this.getAnimals = function getAnimals(){
-            return animals
+        this.getAnimals = function getAnimals(cb){
+            if(!cb || typeof cb != 'function'){console.error('you need a callback')}
+            $.get(baseUrl)
+                .then( res => {
+                    animals = res
+                    cb(animals)
+                })
+                .fail(logError)
         }
         
         this.getAnimal = function getAnimal(id){
@@ -45,9 +44,20 @@ function AnimalsService() {
             }
         }
     
-        this.addAnimal = function addAnimal(form){
+        this.addAnimal = function addAnimal(form, getAnimals){
             var newAnimals = new Animal(form)
-            animals.unshift(newAnimals)
+            $.post(baseUrl, newAnimals)
+                .then(getAnimals)
+                .fail(logError)
+        }
+        
+        this.removeAnimal = function removeAnimal(index, getAnimals){
+            $.ajax({
+                url: baseUrl + '/' + index,
+                method: 'DELETE'
+            })
+                .then(getAnimals)
+                .fail(logError)
         }
     
     }

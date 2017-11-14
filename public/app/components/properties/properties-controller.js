@@ -10,10 +10,13 @@ function PropertiesController() {
     var propertiesElem = document.getElementById('properties-list')
     var propertiesFormElem = document.getElementById('add-property-form')
     var showButton = document.getElementById('show-properties-button')
-    function drawProperties() {
-        
-      // WHERE ARE ALL THE AUTOS?
-      var properties = propertiesService.getProperties()
+    
+    function getProperties(){
+      propertiesService.getProperties(drawProperties)
+    }
+
+    function drawProperties(properties) {
+      
       var template = ''
       for (var i = 0; i < properties.length; i++) {
         var property = properties[i];
@@ -21,6 +24,7 @@ function PropertiesController() {
               <div class="col-md-3">
                   <div class="panel panel-info">
                       <div class="panel-heading">
+                      <i class="glyphicon glyphicon-trash pull-right" onclick="app.controllers.propertiesCtrl.removeProperty(${i})"></i>                                          
                           <h3>${property.title}</h3>
                           <h6>${property.location}</h6>
                       </div>
@@ -51,9 +55,14 @@ function PropertiesController() {
     this.addProperty = function addProperty(event) {
       event.preventDefault()
       var form = event.target
-      propertiesService.addProperty(form)
+      propertiesService.addProperty(form, getProperties)
       propertiesFormElem.classList.toggle('hidden', true)
-      drawProperties()
+      document.getElementById('addPropertiesForm').reset()
+      this.showAddPropertyForm()
+    }
+
+    this.removeProperty = function removeProperty(index){
+      propertiesService.removeProperty(index, getProperties)
     }
     var formstate = false
     
@@ -71,5 +80,5 @@ function PropertiesController() {
       }
     }
   
-    drawProperties()
+    getProperties()
   }

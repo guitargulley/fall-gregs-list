@@ -1,24 +1,10 @@
 function PropertiesService() {
     
+
+        var baseUrl = 'http://localhost:3001/api/properties'
         // WHATS PRIVATE?
         // DUMMY DATA
-        var properties = [{
-            id: 'asdiinlilijlkmnen',
-            type: 'House',
-            bedRooms: 4,
-            bathRooms: 2,
-            sqFeet: 1900,
-            garage: 'Yes',
-            basement: 'No',
-            hoa:'no',
-            yearBuilt: 2003,
-            price: 260000,
-            description: 'Newer house for family in great location!',
-            location: 'Boise',
-            contact: 'testhouse@house.home',
-            img: '//loremflickr.com/200/200/house',
-            title: 'Great Family Home'
-        }]
+        var properties = []
     
         
         var id = 0;
@@ -40,10 +26,19 @@ function PropertiesService() {
             this.id = id++
         }
     
+        function logError(err){
+            console.log(err)
+        }
         // PUBLIC?
     
-        this.getProperties = function getProperties(){
-            return properties
+        this.getProperties = function getProperties(cb){
+            if(!cb || typeof cb != 'function'){console.error('you need a callback')}
+            $.get(baseUrl)
+                .then( res => {
+                    properties = res
+                    cb(properties)
+                })
+                .fail(logError)
         }
         
         this.getProperty= function getProperty(id){
@@ -55,9 +50,21 @@ function PropertiesService() {
             }
         }
     
-        this.addProperty = function addProperty(form){
+        this.addProperty = function addProperty(form, getProperties){
             var newProperties = new Property(form)
-            properties.unshift(newProperties)
+            $.post(baseUrl,newProperties)
+                .then(getProperties)
+                .fail(logError)
+        }
+        
+        this.removeProperty = function removeProperty(index, getProperties){
+
+            $.ajax({
+                url: baseUrl + '/' + index, 
+                method: 'DELETE'
+            })
+                .then(getProperties)
+                .fail(logError)
         }
     
     }
