@@ -12,7 +12,7 @@ function AutosController() {
   var showButton = document.getElementById('show-autos-button')
 
   function getAutos(){
-    debugger
+  
     autosService.getAutos(drawAutos)
   }
 
@@ -25,7 +25,7 @@ function AutosController() {
             <div class="col-md-3">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                    <i class="glyphicon glyphicon-trash pull-right" onclick="app.controllers.autosCtrl.removeAuto(${i})"></i>                    
+                    <i class="glyphicon glyphicon-trash pull-right" onclick="app.controllers.autosCtrl.removeAuto('${auto._id}')"></i>                    
                         <h3>${auto.title}</h3>
                         <h6>${auto.location}</h6>
                     </div>
@@ -52,8 +52,9 @@ function AutosController() {
     this.showAddAutoForm()
   }
 
-  this.removeAuto = function removeAuto(index){
-    autosService.removeAuto(index, getAutos)
+  this.removeAuto = function removeAuto(id){
+    debugger
+    autosService.removeAuto(id, getAutos)
   }
 
   this.showVehicles = function showVehicles(){

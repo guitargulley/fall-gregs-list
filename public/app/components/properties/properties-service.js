@@ -7,7 +7,7 @@ function PropertiesService() {
         var properties = []
     
         
-        var id = 0;
+        
         function Property(config){
             this.title = config.title.value
             this.type = config.type.value
@@ -23,7 +23,7 @@ function PropertiesService() {
             this.location = config.location.value
             this.description = config.description.value
             this.img = config.img.value
-            this.id = id++
+            
         }
     
         function logError(err){
@@ -57,10 +57,10 @@ function PropertiesService() {
                 .fail(logError)
         }
         
-        this.removeProperty = function removeProperty(index, getProperties){
+        this.removeProperty = function removeProperty(id, getProperties){
 
             $.ajax({
-                url: baseUrl + '/' + index, 
+                url: baseUrl + '/' + id, 
                 method: 'DELETE'
             })
                 .then(getProperties)

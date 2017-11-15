@@ -31,6 +31,9 @@
             <div class="col-sm-4 text-center">
                 <button class="btn btn-info" id="show-properties-btn"onclick="app.controllers.propertiesCtrl.showProperties()">Show Properties For Sale</button>
             </div>
+            <div class="col-sm-4 text-center">
+                <button class="btn btn-info" id="show-instruments-btn"onclick="app.controllers.instrumentsCtrl.showInstruments()">Show Instruments For Sale</button>
+            </div>
         </div>
         <!-- AUTO SECTION -->
         <div id="auto-section" class="hidden">
@@ -284,16 +287,87 @@
             </div> -->
             </div>
         </div>
+        <!-- Music Instruments Section -->
+        <div id="instruments-section" class="hidden">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <button id="show-instruments-button" class="btn btn-info" onclick="app.controllers.instrumentsCtrl.showAddInstrumentForm()">Add A Listing</button>
+                </div>
+                <div class="col-sm-3">
+                        <button id="show-categories-instruments" class="btn btn-danger" onclick="app.controllers.instrumentsCtrl.hideinstruments()">Back to Categories</button>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 hidden" id="add-instrument-form">
+                    <form id="addInstrumentsForm"class="form" onsubmit="app.controllers.instrumentsCtrl.addInstrument(event)">
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="text" name="title" class="form-control" placeholder="Title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="text" name="price" class="form-control" placeholder="Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type:</label>
+                            <input type="text" name="type" class="form-control" placeholder="type ie. guitar/bass">
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Year:</label>
+                            <input type="text" name="year" class="form-control" placeholder="Year">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">description:</label>
+                            <input type="text" name="description" class="form-control" placeholder="description" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">location:</label>
+                            <input type="text" name="location" class="form-control" placeholder="location">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">contact:</label>
+                            <input type="text" name="contact" class="form-control" placeholder="contact" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="img">img:</label>
+                            <input type="text" name="img" class="form-control" placeholder="img">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Add Instrument</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" id="instruments-list">
+                <!-- <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3>instrument TITLE</h3>
+                        <h6>LOCATION</h6>
+                    </div>
+                    <div class="panel-body text-center">
+                        <img src="//placehold.it/200x200">
+                        <h4>year/type</h4>
+                    </div>
+                    <div class="panel-footer">
+                        <h5>price</h5>
+                    </div>
+                </div>
+            </div> -->
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app/components/animals/animals-service.js"></script>
     <script src="app/components/autos/autos-service.js"></script>
     <script src="app/components/properties/properties-service.js"></script>
+    <script src="app/components/instruments/instruments-service.js"></script>
 
     <script src="app/components/animals/animals-controller.js"></script>
     <script src="app/components/autos/autos-controller.js"></script>
     <script src="app/components/properties/properties-controller.js"></script>
+    <script src="app/components/instruments/instruments-controller.js"></script>
 
     <script src="app/init.js"></script>
 

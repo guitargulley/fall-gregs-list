@@ -6,7 +6,7 @@ function AnimalsService() {
         var animals = []
     
         
-        var id = 0;
+        
         function Animal(config){
             this.title = config.title.value
             this.type = config.type.value
@@ -17,7 +17,7 @@ function AnimalsService() {
             this.location = config.location.value
             this.description = config.description.value
             this.img = config.img.value
-            this.id = id++
+            
         }
     
         function logError(err){
@@ -51,9 +51,9 @@ function AnimalsService() {
                 .fail(logError)
         }
         
-        this.removeAnimal = function removeAnimal(index, getAnimals){
+        this.removeAnimal = function removeAnimal(id, getAnimals){
             $.ajax({
-                url: baseUrl + '/' + index,
+                url: baseUrl + '/' + id,
                 method: 'DELETE'
             })
                 .then(getAnimals)
